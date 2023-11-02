@@ -2,7 +2,17 @@
   "name": "datn",
   "version": "0.0.0",
   "license": "MIT",
-  "scripts": {},
+  "scripts": {
+    "nx": "nx",
+
+    "dev:api": "nx start:dev api",
+    "build:api": "nx build api",
+    "start:api": "nx start api",
+    "test:api": "nx test api",
+
+    "dev:web": "nx dev web",
+    "build:web": "nx build web"
+  },
   "private": true,
   "dependencies": {},
   "devDependencies": {
