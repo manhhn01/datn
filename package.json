@@ -9,6 +9,9 @@
     "build:api": "nx build api",
     "start:api": "nx start api",
     "test:api": "nx test api",
+    "prisma-generate": "nx prisma-generate api",
+    "prisma-migrate": "nx prisma-migrate api",
+    "prisma-deploy": "nx prisma-seed api",
 
     "dev:web": "nx dev web",
     "build:web": "nx build web"
