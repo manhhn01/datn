@@ -35,7 +35,7 @@ model User {
   last_name  String
   password   String
   type       UserType
-  avatar     String
+  avatar     String?
   created_at DateTime @default(now())
   updated_at DateTime @updatedAt
 
@@ -67,7 +67,6 @@ model Candidate {
   user_id            Int       @unique
   first_name         String
   last_name          String
-  avatar             String
   email              String
   phone              String?
   address            String
