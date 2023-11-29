@@ -45,7 +45,7 @@ model User {
 
 model Employer {
   id                 Int         @id @default(autoincrement())
-  user_id            Int        @unique
+  user_id            Int         @unique
   company_name       String
   company_size       CompanySize
   logo               String
@@ -57,13 +57,13 @@ model Employer {
   created_at         DateTime    @default(now())
   updated_at         DateTime    @updatedAt
 
-  user               User @relation(fields: [user_id], references: [id])
-  industry           Industry @relation(fields: [industry_id], references: [id])
-  jobs               Job[]
+  user     User     @relation(fields: [user_id], references: [id])
+  industry Industry @relation(fields: [industry_id], references: [id])
+  jobs     Job[]
 }
 
 model Candidate {
-  id                 Int         @id @default(autoincrement())
+  id                 Int       @id @default(autoincrement())
   user_id            Int       @unique
   first_name         String
   last_name          String
@@ -73,12 +73,12 @@ model Candidate {
   social_media_links Json?
   looking_for_job    Boolean
   email_verified_at  DateTime?
-  created_at         DateTime    @default(now())
-  updated_at         DateTime    @updatedAt
+  created_at         DateTime  @default(now())
+  updated_at         DateTime  @updatedAt
 
-  user               User @relation(fields: [user_id], references: [id])
-  skills             CandidateSkill[]
-  bookmarks          CandidateBookmark[]
+  user      User                @relation(fields: [user_id], references: [id])
+  skills    CandidateSkill[]
+  bookmarks CandidateBookmark[]
 }
 
 model CandidateSkill {
@@ -90,45 +90,49 @@ model CandidateSkill {
   updated_at DateTime @updatedAt
 
   candidate Candidate @relation(fields: [user_id], references: [id])
-  skill     Skill @relation(fields: [skill_id], references: [id])
-	@@map("UserSkill")
+  skill     Skill     @relation(fields: [skill_id], references: [id])
+
+  @@map("UserSkill")
 }
 
 model Skill {
-  id         Int      @id @default(autoincrement())
-  name       String
+  id          Int      @id @default(autoincrement())
+  name        String
   industry_id Int
-  created_at DateTime @default(now())
-  updated_at DateTime @updatedAt
-  
+  created_at  DateTime @default(now())
+  updated_at  DateTime @updatedAt
+
   user_skill CandidateSkill[]
-  industry   Industry @relation(fields: [industry_id], references: [id])
+  industry   Industry         @relation(fields: [industry_id], references: [id])
   jobs       JobSkill[]
 }
 
 model Industry {
-  id         Int      @id @default(autoincrement())
+  id         Int        @id @default(autoincrement())
   name       String
   employers  Employer[]
-  created_at DateTime @default(now())
-  updated_at DateTime @updatedAt
+  created_at DateTime   @default(now())
+  updated_at DateTime   @updatedAt
 
-  skills     Skill[]
+  skills Skill[]
 }
 
 model Job {
-  id                 Int         @id @default(autoincrement())
-  employer_id        Int
-  title              String
-  location           String
-  description        String
-  type               JobType
-  created_at DateTime @default(now())
-  updated_at DateTime @updatedAt
+  id              Int      @id @default(autoincrement())
+  employer_id     Int
+  title           String
+  location        String
+  description     String
+  type            JobType
+  salary_min      Int?
+  salary_max      Int?
+  salary_currency String?
+  created_at      DateTime @default(now())
+  updated_at      DateTime @updatedAt
 
-  employer           Employer @relation(fields: [employer_id], references: [id])
-  candidates         CandidateBookmark[]
-  skills             JobSkill[]
+  employer   Employer            @relation(fields: [employer_id], references: [id])
+  candidates CandidateBookmark[]
+  skills     JobSkill[]
 }
 
 model JobSkill {
@@ -138,17 +142,17 @@ model JobSkill {
   created_at DateTime @default(now())
   updated_at DateTime @updatedAt
 
-  job        Job @relation(fields: [job_id], references: [id])
-  skill      Skill @relation(fields: [skill_id], references: [id])
+  job   Job   @relation(fields: [job_id], references: [id])
+  skill Skill @relation(fields: [skill_id], references: [id])
 }
 
 model CandidateBookmark {
-  id         Int      @id @default(autoincrement())
+  id           Int      @id @default(autoincrement())
   candidate_id Int
-  job_id      Int
-  created_at DateTime @default(now())
-  updated_at DateTime @updatedAt
+  job_id       Int
+  created_at   DateTime @default(now())
+  updated_at   DateTime @updatedAt
 
-  candidate   Candidate @relation(fields: [candidate_id], references: [id])
-  job         Job @relation(fields: [job_id], references: [id])
+  candidate Candidate @relation(fields: [candidate_id], references: [id])
+  job       Job       @relation(fields: [job_id], references: [id])
 }
