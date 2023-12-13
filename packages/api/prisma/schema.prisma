@@ -48,9 +48,9 @@ model Employer {
   user_id            Int         @unique
   company_name       String
   company_size       CompanySize
-  logo               String
-  website            String
-  description        String
+  logo               String?
+  website            String?
+  description        String?
   social_media_links Json
   industry_id        Int
   email_verified_at  DateTime?
@@ -65,11 +65,9 @@ model Employer {
 model Candidate {
   id                 Int       @id @default(autoincrement())
   user_id            Int       @unique
-  first_name         String
-  last_name          String
   email              String
   phone              String?
-  address            String
+  address            String?
   social_media_links Json?
   looking_for_job    Boolean
   email_verified_at  DateTime?
@@ -79,11 +77,11 @@ model Candidate {
   user      User                @relation(fields: [user_id], references: [id])
   skills    CandidateSkill[]
   bookmarks CandidateBookmark[]
+  documents  Document[]
 }
 
 model CandidateSkill {
   id         Int      @id @default(autoincrement())
-  name       String
   user_id    Int
   skill_id   Int
   created_at DateTime @default(now())
@@ -155,4 +153,17 @@ model CandidateBookmark {
 
   candidate Candidate @relation(fields: [candidate_id], references: [id])
   job       Job       @relation(fields: [job_id], references: [id])
+}
+
+model Document {
+  id           Int      @id @default(autoincrement())
+  title        String?
+  candidate_id Int
+  name         String
+  path         String
+  template     Json?
+  created_at   DateTime @default(now())
+  updated_at   DateTime @updatedAt
+
+  candidate Candidate @relation(fields: [candidate_id], references: [id])
 }

@@ -4,14 +4,14 @@ import {
   GridItem,
   NavItem,
   SocialItem,
-} from "@/app/(public)/(components)/FooterSection/style";
+} from "@/components/FooterSection/style";
 import Container from "@/components/Container";
 import { Box } from "@mui/system";
 import Image from "next/image";
 
 export default function FooterSection() {
   return (
-    <Box borderTop="1px solid #e5e5e5">
+    <Box borderTop="1px solid #e5e5e5" mt={20}>
       <Container
         sx={{
           py: 6,

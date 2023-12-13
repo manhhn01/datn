@@ -7,6 +7,13 @@ import { AuthModule } from '@modules/auth/auth.module';
 import { UserModule } from '@modules/user/user.module';
 import { CommonModule } from '@modules/common/common.module';
 import { JwtModule } from '@nestjs/jwt';
+import { EmployerModule } from '@modules/employer/employer.module';
+import { IndustryModule } from '@modules/industry/industry.module';
+import { JobModule } from '@modules/job/job.module';
+import { CandidateModule } from '@modules/candidate/candidate.module';
+import { SkillModule } from '@modules/skill/skill.module';
+import { ServeStaticModule } from '@nestjs/serve-static';
+import { join } from 'path';
 
 @Module({
   imports: [
@@ -14,6 +21,9 @@ import { JwtModule } from '@nestjs/jwt';
       isGlobal: true,
       cache: true,
       load: [appConfig],
+    }),
+    ServeStaticModule.forRoot({
+      rootPath: join(__dirname, '..', '..', '..', 'uploads'),
     }),
     JwtModule.registerAsync({
       global: true,
@@ -30,6 +40,11 @@ import { JwtModule } from '@nestjs/jwt';
     CommonModule,
     AuthModule,
     UserModule,
+    CandidateModule,
+    EmployerModule,
+    IndustryModule,
+    JobModule,
+    SkillModule,
   ],
   controllers: [AppController],
   providers: [AppService],

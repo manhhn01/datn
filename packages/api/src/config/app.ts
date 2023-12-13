@@ -2,6 +2,7 @@ import { registerAs } from '@nestjs/config';
 import { AppConfig } from 'src/types/config';
 
 const appConfig = registerAs<AppConfig>('app', () => ({
+  WEB_URL: process.env.WEB_URL || 'http://localhost:3000',
   PORT: Number(process.env.PORT) || 4000,
   JWT_SECRET: process.env.JWT_SECRET || 'secret',
   JWT_EXPIRES_IN: process.env.JWT_EXPIRES_IN || '1d',
