@@ -19,7 +19,7 @@ export const JobCardWrapper = styled("div")`
 export const CompanyLogo = styled(Image)`
   border-radius: 8px;
   overflow: hidden;
-  object-fit: cover;
+  object-fit: contain;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 `;
 

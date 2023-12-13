@@ -22,7 +22,7 @@ export const Title = styled("p")`
   margin-bottom: 8px;
 `;
 
-export const Subtitle = styled("p")`
+export const SubTitle = styled("p")`
   font-size: 20px;
   font-weight: 400;
   text-align: center;

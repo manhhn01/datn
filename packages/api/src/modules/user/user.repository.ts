@@ -13,4 +13,8 @@ export class UserRepository {
   findFirst(args: Prisma.UserFindFirstArgs) {
     return this.dbService.user.findFirst(args);
   }
+
+  update(args: Prisma.UserUpdateArgs) {
+    return this.dbService.user.update(args);
+  }
 }

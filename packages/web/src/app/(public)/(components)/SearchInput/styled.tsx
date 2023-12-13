@@ -1,8 +1,9 @@
-"use client";
+'use client';
 
-import Button from "@/components/Button";
-import { Input } from "@/components/Input";
-import { Box, styled } from "@mui/system";
+import Button from '@/components/Button';
+import { Input } from '@/components/Input';
+import { GeoapifyGeocoderAutocomplete } from '@geoapify/react-geocoder-autocomplete';
+import { Box, styled } from '@mui/system';
 
 export const SearchInputWrapper = styled(Box)`
   width: 100%;
@@ -38,4 +39,12 @@ export const SearchButton = styled(Button)`
   height: 46px;
   border-radius: 30px;
   padding: 0 24px;
+`;
+
+export const GeocoderAutocompleteWrapper = styled(Box)`
+  width: 100%;
+
+  .geoapify-autocomplete-input {
+    border: none;
+  }
 `;
