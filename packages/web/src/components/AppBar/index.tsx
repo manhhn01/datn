@@ -1,10 +1,32 @@
-import AppLogo from "@/components/AppLogo";
-import Button from "@/components/Button";
-import ButtonText from "@/components/ButtonText";
-import { Box } from "@mui/system";
-import Link from "next/link";
+'use client';
+
+import UserInfo from '@/components/AppBar/(components)/UserInfo';
+import { StyleLink } from '@/components/AppBar/styled';
+import AppLogo from '@/components/AppLogo';
+import { Box } from '@mui/system';
+import { usePathname, useRouter } from 'next/navigation';
+import { useLayoutEffect, useState } from 'react';
 
 export default function AppBar() {
+  const pathname = usePathname();
+  const [scrollY, setScrollY] = useState(0);
+
+  const isHomePage = pathname === '/';
+
+  useLayoutEffect(() => {
+    const handleScroll = () => {
+      setScrollY(window.scrollY);
+    };
+
+    window.addEventListener('scroll', handleScroll, {
+      passive: true,
+    });
+
+    setScrollY(window.scrollY);
+
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
   return (
     <Box
       display="flex"
@@ -18,6 +40,13 @@ export default function AppBar() {
       top={0}
       left={0}
       position="fixed"
+      className={scrollY > 0 ? 'scrolled' : ''}
+      sx={{
+        transition: 'all 0.3s ease-in-out',
+      }}
+      style={{
+        backgroundColor: scrollY > 0 ? '#fff' : 'transparent',
+      }}
     >
       <Box width={160} height="100%">
         <AppLogo />
@@ -28,34 +57,15 @@ export default function AppBar() {
         justifyContent="center"
         gap={3}
         sx={{
-          color: "white",
+          color: isHomePage ? 'white' : 'black',
         }}
       >
-        <Link href="/">Home</Link>
-        <Link href="/jobs">Find jobs</Link>
-        <Link href="/companies">Companies</Link>
-        <Link href="/about">About</Link>
+        <StyleLink href="/">Home</StyleLink>
+        <StyleLink href="/jobs">Find jobs</StyleLink>
+        <StyleLink href="/resume/create">Build Resume</StyleLink>
+        <StyleLink href="/about">About</StyleLink>
       </Box>
-      <Box display="flex" alignItems="center" justifyContent="centerj" gap={3}>
-        <ButtonText
-          sx={{
-            color: "white",
-            fontWeight: 500,
-            px: 1,
-          }}
-        >
-          Log In
-        </ButtonText>
-        <Button
-          sx={{
-            borderRadius: 20,
-            fontWeight: 500,
-            px: 2.75,
-          }}
-        >
-          Register
-        </Button>
-      </Box>
+      <UserInfo />
     </Box>
   );
 }

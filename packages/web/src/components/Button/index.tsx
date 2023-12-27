@@ -91,7 +91,7 @@ const Button = styled(BaseButton)<{ variant?: ButtonVariant }>(
 
   &:disabled {
     background-color: ${theme.palette.mode === "dark" ? grey[700] : grey[200]};
-    color: ${theme.palette.mode === "dark" ? grey[200] : grey[700]};
+    color: ${theme.palette.mode === "dark" ? grey[200] : 'white'};
     border: 1px solid ${theme.palette.mode === "dark" ? grey[700] : grey[200]};
     cursor: not-allowed;
     box-shadow: none;

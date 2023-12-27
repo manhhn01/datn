@@ -1,4 +1,4 @@
-import HeaderSection from "@/app/(public)/(components)/HeaderSection";
+import FooterSection from "@/components/FooterSection";
 import MainLayout from "@/components/containers/layout/MainLayout";
 
 export interface PublicLayoutProps {
@@ -8,6 +8,7 @@ export default function PublicLayout({ children }: PublicLayoutProps) {
   return (
     <MainLayout>
       {children}
+      <FooterSection />
     </MainLayout>
   );
 }
