@@ -5,7 +5,6 @@ import SponsorSection from "@/app/(public)/(components)/SponsorSection";
 import EmailSubscriptionSection from "@/app/(public)/(components)/EmailSubscriptionSection";
 import React from "react";
 import { Box } from "@mui/system";
-import FooterSection from "@/app/(public)/(components)/FooterSection";
 
 export default function HomePage() {
   return (
@@ -15,7 +14,6 @@ export default function HomePage() {
       <ListFeatureJobSection />
       <SponsorSection />
       <EmailSubscriptionSection />
-      <FooterSection />
     </Box>
   );
 }

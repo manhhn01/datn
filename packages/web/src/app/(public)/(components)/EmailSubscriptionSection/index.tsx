@@ -1,7 +1,7 @@
 import {
   EmailSubscriptionWrapper,
   InputWrapper,
-  Subtitle,
+  SubTitle,
   Title,
 } from "@/app/(public)/(components)/EmailSubscriptionSection/styled";
 import Button from "@/components/Button";
@@ -17,10 +17,10 @@ export default function EmailSubscriptionSection() {
           <br />
           like no other
         </Title>
-        <Subtitle>
+        <SubTitle>
           Why search when you can discover your perfect job? Let the right jobs
           come to you
-        </Subtitle>
+        </SubTitle>
         <InputWrapper>
           <Input placeholder="Enter your email address" />
           <Button sx={{ borderRadius: "25px", padding: "8px 24px" }}>
